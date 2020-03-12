@@ -99,8 +99,8 @@ def init():
             # raise som error
             print("Send to either development or production endpoint")
         html_data = {
-            "dev": house_form.send_to_dev.data
-            "prd": house_form.send_to_prod.data
+            "dev": house_form.send_to_dev.data,
+            "prd": house_form.send_to_prod.data,
             "r_dev": response_dev if response_dev else False,
             "r_prod": response_prod if response_dev else False,
             "house_form": house_form,
