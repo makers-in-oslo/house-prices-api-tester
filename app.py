@@ -28,8 +28,10 @@ COLUMNS = [
     "LSTAT",
 ]
 HEADERS = {"Content-Type": "application/json"}
-URL_PROD = "https://house-price-prod.herokuapp.com/"
-URL_DEV = "https://house-price-staging.herokuapp.com/"
+URL_PROD_B = "https://house-price-prod.herokuapp.com/"
+URL_PROD_D = "https://house-price-prod.herokuapp.com/"
+URL_DEV_B = "https://house-price-staging.herokuapp.com/"
+URL_DEV_D = "https://house-price-staging.herokuapp.com/"
 
 
 class HouseForm(FlaskForm):
@@ -70,46 +72,82 @@ def init():
             "B": house_form.B.data,
             "LSTAT": house_form.LSTAT.data,
         }
-        # print(f"body {body}")
+        print(f"body {body}")
         # print(type(house_form.send_to_dev.data))
         # print(house_form.send_to_dev.data)
 
         # print(f"send to prod {bool(house_form.send_to_prod.data)}")
         # print(f"send to dev {bool(house_form.send_to_dev.data)}")
-        response_dev = False
-        response_prod = False
+        response_dev_b = False
+        response_dev_d = False
+        response_prod_b = False
+        response_prod_d = False
         if (
             house_form.send_to_dev.data & house_form.send_to_prod.data
         ):  # sum(house_form.send_to_dev + house_form.send_to_prod)==0:
-            response_dev = requests.request(
-                "POST", URL_DEV, data=json.dumps(body), headers=HEADERS
+            response_dev_b = requests.request(
+                "POST", URL_DEV_B, data=json.dumps(body), headers=HEADERS
             )
-            response_prod = requests.request(
-                "POST", URL_PROD, data=json.dumps(body), headers=HEADERS
+            response_dev_d = requests.request(
+                "POST", URL_DEV_D, data=json.dumps(body), headers=HEADERS
+            )
+            response_prod_b = requests.request(
+                "POST", URL_PROD_B, data=json.dumps(body), headers=HEADERS
+            )
+            response_prod_d = requests.request(
+                "POST", URL_PROD_D, data=json.dumps(body), headers=HEADERS
             )
         elif house_form.send_to_dev.data:
-            response_dev = requests.request(
-                "POST", URL_DEV, data=json.dumps(body), headers=HEADERS
+            response_dev_b = requests.request(
+                "POST", URL_DEV_B, data=json.dumps(body), headers=HEADERS
+            )
+            response_dev_d = requests.request(
+                "POST", URL_DEV_D, data=json.dumps(body), headers=HEADERS
             )
         elif house_form.send_to_prod.data:
-            response_prod = requests.request(
-                "POST", URL_PROD, data=json.dumps(body), headers=HEADERS
+            response_prod_b = requests.request(
+                "POST", URL_PROD_B, data=json.dumps(body), headers=HEADERS
+            )
+            response_prod_d = requests.request(
+                "POST", URL_PROD_D, data=json.dumps(body), headers=HEADERS
             )
         else:
             # raise som error
             print("Send to either development or production endpoint")
         html_data = {
             "dev": house_form.send_to_dev.data,
-            "prd": house_form.send_to_prod.data,
-            "r_dev": response_dev if response_dev else False,
-            "r_prod": response_prod if response_dev else False,
+            "prod": house_form.send_to_prod.data,
+            "r_dev_b": decode_content(get_content(response_dev_b)),
+            "r_dev_d": decode_content(get_content(response_dev_d)),
+            "r_prod_b": decode_content(get_content(response_prod_b)),
+            "r_prod_d": decode_content(get_content(response_prod_d)),
             "house_form": house_form,
         }
-        print(f"response_dev{response_dev}")
-        # print(f"response_dev{response_dev}")
-
+        print(f"response_dev_b {html_data['r_dev_b']}")
+        print(f"response_dev_d {html_data['r_dev_d']}")
+        print(f"response_dev_b {html_data['r_prod_b']}")
+        print(f"response_dev_d {html_data['r_prod_d']}")
+        print(type(html_data["r_prod_d"]))
+        print(type(html_data["r_dev_d"]))
         return render_template("index.html", **html_data)
     return render_template("index.html", house_form=house_form)
+
+
+def get_content(response):
+    try:
+        response = response.content
+    except AttributeError:
+        response = False
+
+    return response
+
+
+def decode_content(content):
+    try:
+        decoded_content = content.decode("utf-8").replace("\\", "")
+    except AttributeError:
+        decoded_content = "no content"
+    return decoded_content
 
 
 if __name__ == "__main__":
