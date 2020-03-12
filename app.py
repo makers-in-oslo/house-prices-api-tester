@@ -123,12 +123,6 @@ def init():
             "r_prod_d": decode_content(get_content(response_prod_d)),
             "house_form": house_form,
         }
-        print(f"response_dev_b {html_data['r_dev_b']}")
-        print(f"response_dev_d {html_data['r_dev_d']}")
-        print(f"response_dev_b {html_data['r_prod_b']}")
-        print(f"response_dev_d {html_data['r_prod_d']}")
-        print(type(html_data["r_prod_d"]))
-        print(type(html_data["r_dev_d"]))
         return render_template("index.html", **html_data)
     return render_template("index.html", house_form=house_form)
 
