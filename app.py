@@ -29,16 +29,16 @@ COLUMNS = [
 ]
 HEADERS = {"Content-Type": "application/json"}
 URL_PROD_B = "https://house-price-prod.herokuapp.com/"
-URL_PROD_D = "https://house-price-prod.herokuapp.com/"
+URL_PROD_D = "https://house-price-prod.herokuapp.com/daniel"
 URL_DEV_B = "https://house-price-staging.herokuapp.com/"
-URL_DEV_D = "https://house-price-staging.herokuapp.com/"
+URL_DEV_D = "https://house-price-staging.herokuapp.com/daniel"
 
 
 class HouseForm(FlaskForm):
     CRIM = TextField("CRIM: ")
     ZN = TextField("ZN: ")
     INDUS = TextField("INDUS: ")
-    CHAS = TextField("CHAS: ")
+    CHAS = BooleanField("CHAS: ")
     NOX = TextField("NOX: ")
     RM = TextField("RM: ")
     AGE = TextField("AGE: ")
@@ -58,19 +58,19 @@ def init():
     house_form = HouseForm()
     if house_form.validate_on_submit():
         body = {
-            "CRIM": house_form.CRIM.data,
-            "ZN": house_form.ZN.data,
-            "INDUS": house_form.INDUS.data,
-            "CHAS": house_form.CHAS.data,
-            "NOX": house_form.NOX.data,
-            "RM": house_form.RM.data,
-            "AGE": house_form.AGE.data,
-            "DIS": house_form.DIS.data,
-            "RAD": house_form.RAD.data,
-            "TAX": house_form.TAX.data,
-            "PTRATIO": house_form.PTRATIO.data,
-            "B": house_form.B.data,
-            "LSTAT": house_form.LSTAT.data,
+            "CRIM": float(house_form.CRIM.data),
+            "ZN": float(house_form.ZN.data),
+            "INDUS": float(house_form.INDUS.data),
+            "CHAS": float(house_form.CHAS.data == "True"),
+            "NOX": float(house_form.NOX.data),
+            "RM": float(house_form.RM.data),
+            "AGE": float(house_form.AGE.data),
+            "DIS": float(house_form.DIS.data),
+            "RAD": float(house_form.RAD.data),
+            "TAX": float(house_form.TAX.data),
+            "PTRATIO": float(house_form.PTRATIO.data),
+            "B": float(house_form.B.data),
+            "LSTAT": float(house_form.LSTAT.data),
         }
         print(f"body {body}")
         # print(type(house_form.send_to_dev.data))
