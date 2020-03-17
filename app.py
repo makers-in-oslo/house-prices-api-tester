@@ -3,7 +3,7 @@ import json
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 import pandas as pd
-from flask import Flask, render_template, send_file, make_response
+from flask import Flask, render_template, send_file, make_response, url_for
 import pickle
 import base64
 import numpy as np
@@ -30,7 +30,7 @@ COLUMNS = [
 HEADERS = {"Content-Type": "application/json"}
 URL_PROD_B = "https://house-price-prod.herokuapp.com/"
 URL_PROD_D = "https://house-price-prod.herokuapp.com/daniel"
-URL_DEV_B = "https://house-price-staging.herokuapp.com/"
+URL_DEV_B = "https://house-price-staging.herokuapp.com/bjornar"
 URL_DEV_D = "https://house-price-staging.herokuapp.com/daniel"
 
 
