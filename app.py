@@ -28,7 +28,7 @@ COLUMNS = [
     "LSTAT",
 ]
 HEADERS = {"Content-Type": "application/json"}
-URL_PROD_B = "https://house-price-prod.herokuapp.com/"
+URL_PROD_B = "https://house-price-prod.herokuapp.com/bjornar"
 URL_PROD_D = "https://house-price-prod.herokuapp.com/daniel"
 URL_DEV_B = "https://house-price-staging.herokuapp.com/bjornar"
 URL_DEV_D = "https://house-price-staging.herokuapp.com/daniel"
@@ -81,6 +81,7 @@ def init():
         response_dev_b = False
         response_dev_d = False
         response_prod_b = False
+        
         response_prod_d = False
         if (
             house_form.send_to_dev.data & house_form.send_to_prod.data
