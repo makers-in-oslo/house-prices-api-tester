@@ -3,109 +3,132 @@
 
 {% block header %}
 <title>House price estimation</title>
+<meta name="description" content="House price estimation">
+
 {% endblock %}
 
 {% block content %}
-<h1 class="ml-4"> Estimate your house price! No broker needed </h1>
+<div class="slider-item overlay" data-stellar-background-ratio="0.5"
+    style="background-image: url('static/images/background_image.jpg');">
+    <div class="container">
+        <div class="row slider-text align-items-center justify-content-center">
+            <div class="col-lg-12 text-center col-sm-12">
+                <p data-aos="fade-up" data-aos="fade-up" data-aos-delay="">No broker needed</p>
+                <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100" style="display:inline-block">House price
+                    estimation!</h1>
+                <!--<div data-aos="fade-up" data-aos-delay="100" class="button-box col-lg-12">
+                    <a href="INSERT GITHUB LINK" class="btn btn-info" role="button"
+                        target="_blank">Github</a>
+                </div>-->
 
-<div class="table ml-4 " align="center">
-    <!--- align="center"-->
-    <form method="post">
-        {{ house_form.hidden_tag() }}
-        <div class="table-row ">
-            <label class="" for="CRIM">CRIM:</label>
-            <input class="" type="number" id="CRIM" name="CRIM" placeholder="Per capita crime rate" required>
-            <label class="" for="ZN">ZN:</label>
-            <input class="" type="number" id="ZN" name="ZN" placeholder="Proportion of big houses in the hood" required>
-        </div>
-        <div class="table-row">
-            <label class="" for="INDUS">INDUS:</label>
-            <input class="" type="number" id="INDUS" name="INDUS" placeholder="Proportion of non-retail business"
-                required>
 
-            <label class="" for="CHAS">CHAS</label>
-            <select class="" id="CHAS" name="CHAS">
-                <option value="True">1</option>
-                <option value="False">0</option>
-            </select>
-        </div>
-        <div class="table-row">
-            <label class="" for="NOX">NOX:</label>
-            <input class="" type="number" id="NOX" name="NOX" placeholder="Nitric oxides concentration" required>
+                <div class="table ml-4 " align="center">
+                    <!--- align="center"-->
+                    <form method="post">
+                        {{ house_form.hidden_tag() }}
+                        <div class="table-row">
+                            <label class="" for="CRIM">CRIM:</label>
+                            <input class="" type="number" id="CRIM" name="CRIM" placeholder="Per capita crime rate"
+                                required>
+                            <label class="" for="ZN">ZN:</label>
+                            <input class="" type="number" id="ZN" name="ZN"
+                                placeholder="Proportion of big houses in the hood" required>
+                        </div>
+                        <div class="table-row">
+                            <label class="" for="INDUS">INDUS:</label>
+                            <input class="" type="number" id="INDUS" name="INDUS"
+                                placeholder="Proportion of non-retail business" required>
 
-            <label class="" for="RM">RM:</label>
-            <input class="" type="number" id="RM" name="RM" placeholder="Average number of rooms per dwelling" required>
-        </div>
-        <div class="table-row">
-            <label class="" for="AGE">AGE:</label>
-            <input class="" type="number" id="AGE" name="AGE"
-                placeholder="Proportion of owner-occupied units built prior to 1940" required>
+                            <label class="" for="CHAS">CHAS</label>
+                            <select class="" id="CHAS" name="CHAS">
+                                <option value="True">1</option>
+                                <option value="False">0</option>
+                            </select>
+                        </div>
+                        <div class="table-row">
+                            <label class="" for="NOX">NOX:</label>
+                            <input class="" type="number" id="NOX" name="NOX" placeholder="Nitric oxides concentration"
+                                required>
 
-            <label class="" for="DIS">DIS:</label>
-            <input class="" type="number" id="DIS" name="DIS"
-                placeholder="Weighted distances to five Boston employment centres" required>
-        </div>
-        <div class="table-row">
-            <label class="" for="RAD">RAD:</label>
-            <input class="" type="number" id="RAD" name="RAD" placeholder="Index of accessibility to radial highways"
-                required>
+                            <label class="" for="RM">RM:</label>
+                            <input class="" type="number" id="RM" name="RM"
+                                placeholder="Average number of rooms per dwelling" required>
+                        </div>
+                        <div class="table-row">
+                            <label class="" for="AGE">AGE:</label>
+                            <input class="" type="number" id="AGE" name="AGE"
+                                placeholder="Proportion of owner-occupied units built prior to 1940" required>
 
-            <label class="" for="TAX">TAX:</label>
-            <input class="" type="number" id="TAX" name="TAX" placeholder="Property-tax rate per $10,000" required>
-        </div>
-        <div class="table-row">
-            <label class="" for="PTRATIO">PTRATIO:</label>
-            <input class="" type="number" id="PTRATIO" name="PTRATIO" placeholder="Pupil-teacher ratio by town"
-                required>
+                            <label class="" for="DIS">DIS:</label>
+                            <input class="" type="number" id="DIS" name="DIS"
+                                placeholder="Weighted distances to five Boston employment centres" required>
+                        </div>
+                        <div class="table-row">
+                            <label class="" for="RAD">RAD:</label>
+                            <input class="" type="number" id="RAD" name="RAD"
+                                placeholder="Index of accessibility to radial highways" required>
 
-            <label class="" for="B">B:</label>
-            <input class="" type="number" id="B" name="B" placeholder="Martin Luther King, did not die for this"
-                required>
-        </div>
-        <div class="table-row">
+                            <label class="" for="TAX">TAX:</label>
+                            <input class="" type="number" id="TAX" name="TAX"
+                                placeholder="Property-tax rate per $10,000" required>
+                        </div>
+                        <div class="table-row">
+                            <label class="" for="PTRATIO">PTRATIO:</label>
+                            <input class="" type="number" id="PTRATIO" name="PTRATIO"
+                                placeholder="Pupil-teacher ratio by town" required>
 
-            <div class="form-check form-check-inline">
-                <!--<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="">-->
-                <input class="form-check form-check-inline" type="checkbox" id="send_to_prod" name="send_to_prod">
-                <label class="form-check-label" for="send_to_prod">
-                    Send to production
-                </label>
-            </div>
-            <label class="form-check form-check-inline" for="agree">
-                <input class="form-check-label" type="checkbox" id="send_to_dev" name="send_to_dev">
-                Send to Development
-            </label>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Estimate your houseprice</button>
-        </div>
-    </form>
-</div>
+                            <label class="" for="B">B:</label>
+                            <input class="" type="number" id="B" name="B"
+                                placeholder="Martin Luther King, did not die for this" required>
+                            <label class="" for="LSTAT">LSTAT:</label>
+                            <input class="" type="number" id="LSTAT" name="LSTAT"
+                                placeholder="Glad this is not recorded" required>
+                        </div>
+                        <div class="table-row">
 
-{% if house_form.validate_on_submit()%}
-<table class="table" align="center">
-    <thead>
-        <tr>
-            <th scope="col">Provider</th>
-            <th scope="col">Production</th>
-            <th scope="col">Development</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">Bnar</th>
-            <td>{{r_prod_b}}</td>
-            <td>{{r_dev_b}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Dnl</th>
-            <td>{{r_prod_d}}</td>
-            <td>{{r_dev_d}}</td>
-        </tr>
-    </tbody>
-</table>
-{% else %}
+                            <div class="form-check form-check-inline">
+                                <!--<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="">-->
+                                <input class="form-check form-check-inline" type="checkbox" id="send_to_prod"
+                                    name="send_to_prod">
+                                <label class="form-check-label" for="send_to_prod">
+                                    Send to production
+                                </label>
+                            </div>
+                            <label class="form-check form-check-inline" for="agree">
+                                <input class="form-check-label" type="checkbox" id="send_to_dev" name="send_to_dev">
+                                Send to Development
+                            </label>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Estimate your houseprice</button>
+                        </div>
+                    </form>
+                </div>
 
-{% endif %}
+                {% if house_form.validate_on_submit()%}
+                <table class="table table-borderless text-white" align="center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Production</th>
+                            <th scope="col">Development</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Bnar</th>
+                            <td>{{r_prod_b}}</td>
+                            <td>{{r_dev_b}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Dnl</th>
+                            <td>{{r_prod_d}}</td>
+                            <td>{{r_dev_d}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% else %}
 
-{% endblock %}
+                {% endif %}
+
+                {% endblock %}
